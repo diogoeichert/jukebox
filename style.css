@@ -1,0 +1,166 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.artist-name {
+    font-size: 14px;
+    margin: 0;
+    color: #666;
+}
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.music-player {
+    display: flex;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.playlist-menu {
+    width: 25%;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.playlist-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.playlist-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-list {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: scroll;
+    flex: 1;
+}
+
+.song-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.song-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.player {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.play-btn {
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff; /* Set the color of the SVG icon */
+}
+
+.play-song-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.play-song-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #333;
+}
+
+.play-song-btn:focus {
+    outline: none;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.song-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.info {
+    text-align: left;
+}
+
+.song-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.progress-bar {
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+    width: 100%; /* Make sure the progress bar spans the entire width */
+}
+
+.progress {
+    height: 100%;
+    width: 50%; /* Set this dynamically with JavaScript to show progress */
+    background-color: #333;
+    border-radius: 5px;
+}
