@@ -11,6 +11,23 @@ body, html {
     color: #666;
 }
 
+.control-btn {
+    background-color: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    font-weight: bold;
+}
+
+.control-btn .btn-label {
+    margin-right: 10px;
+}
+
 .drop-zone {
     border: 2px dashed #ccc;
     padding: 20px;
@@ -22,6 +39,12 @@ body, html {
     display: flex;
     height: 100%;
     background-color: #f0f0f0;
+}
+
+.play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
 }
 
 .playlist-menu {
@@ -84,28 +107,6 @@ body, html {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-}
-
-.control-btn {
-    background-color: #333;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.play-btn {
-    background-color: #333;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.play-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: #fff; /* Set the color of the SVG icon */
 }
 
 .play-song-btn {
