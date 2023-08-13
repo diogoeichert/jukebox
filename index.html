@@ -15,37 +15,33 @@
                 <li>Playlist 1</li>
                 <li>Playlist 2</li>
                 <li>Playlist 3</li>
-                <!-- Add more playlists as needed -->
             </ul>
         </div>
 
 		<div class="content">
 			<div class="song-list" id="songList">
-				<ul>
-					<!-- Song items will be added dynamically here -->
-				</ul>
-
 				<div class="drop-zone" id="dropZone">
-					<p>Drag and drop songs here</p>
+					<p>Drop audio files here</p>
 				</div>
+
+				<ul></ul>
 			</div>
 			
 			<div class="player">
-				<audio id="audioPlayer">
-					<source src="" type="audio/mpeg">
-					Your browser does not support the audio element.
-				</audio>
+				<audio id="audioPlayer"></audio>
 				
 				<div class="player-controls">
 					<button class="control-btn">
 						<span class="btn-label">Previous</span>
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 							<path d="M12 4v12l-8-6z"/>
 						</svg>
 					</button>
 
 					<button class="control-btn play-btn">
 						<span class="btn-label">Play</span>
+
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 							<path d="M8 5v14l11-7z"/>
 						</svg>
@@ -53,7 +49,8 @@
 
 					<button class="control-btn">
 						<span class="btn-label">Next</span>
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 							<path d="M8 4v12l8-6z"/>
 						</svg>
 					</button>
