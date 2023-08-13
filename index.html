@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Jukebox</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Jukebox</title>
 </head>
 
 <body>
-    <div class="music-player">
-        <div class="playlist-menu">
-            <ul>
-                <li>Playlist 1</li>
-                <li>Playlist 2</li>
-                <li>Playlist 3</li>
-            </ul>
-        </div>
+	<div class="music-player">
+		<div class="playlist-menu">
+			<ul>
+				<li>Playlist 1</li>
+				<li>Playlist 2</li>
+				<li>Playlist 3</li>
+			</ul>
+		</div>
 
 		<div class="content">
 			<div class="song-list" id="songList">
@@ -31,7 +31,7 @@
 				<audio id="audioPlayer"></audio>
 				
 				<div class="player-controls">
-					<button class="control-btn">
+					<button class="control-btn" id ='previousButton'>
 						<span class="btn-label">Previous</span>
 
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@
 						</svg>
 					</button>
 
-					<button class="control-btn play-btn">
+					<button class="control-btn play-btn" id ='playButton'>
 						<span class="btn-label">Play</span>
 
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
 						</svg>
 					</button>
 
-					<button class="control-btn">
+					<button class="control-btn"  id ='nextButton'>
 						<span class="btn-label">Next</span>
 
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -57,20 +57,20 @@
 				</div>
 
 				<div class="song-info">
-                    <img src="song-cover.jpg" alt="Song Cover">
+					<img src="song-cover.jpg" alt="Song Cover">
 
 					<div class="info">
-                        <p class="song-title">Song Title</p>
-                        <p class="artist-name">Artist Name</p>
-                    </div>
-                </div>
+						<p class="song-title">Song Title</p>
+						<p class="artist-name">Artist Name</p>
+					</div>
+				</div>
 
 				<div class="progress-bar">
-                    <div class="progress"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div id="progressBar" class="progress"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script src="main.js"></script>
 </body>

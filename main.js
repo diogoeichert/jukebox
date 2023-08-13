@@ -1,7 +1,52 @@
 "use strict";
 
 const audioPlayer = document.querySelector('#audioPlayer');
+const progressBar = document.querySelector('#progressBar');
 const songList = document.querySelector('#songList');
+const previousButton = document.getElementById('previousButton');
+const nextButton = document.getElementById('nextButton');
+
+audioPlayer.addEventListener('timeupdate', () => {
+	const currentTime = audioPlayer.currentTime;
+	const duration = audioPlayer.duration;
+	const progressPercentage = (currentTime / duration) * 100;
+	progressBar.style.width = progressPercentage + '%';
+});
+
+previousButton.addEventListener('click', () => {
+	playPreviousSong();
+});
+
+nextButton.addEventListener('click', () => {
+	playNextSong();
+});
+
+function playPreviousSong() {
+	const currentSongIndex = getCurrentSongIndex();
+
+	if (currentSongIndex > 0) {
+		const prevSongItem = songList.querySelectorAll('li')[currentSongIndex - 1];
+		playSong(prevSongItem);
+	}
+}
+
+function playNextSong() {
+	const currentSongIndex = getCurrentSongIndex();
+	const songItems = songList.querySelectorAll('li');
+
+	if (currentSongIndex < songItems.length - 1) {
+		const nextSongItem = songItems[currentSongIndex + 1];
+		playSong(nextSongItem);
+	}
+}
+
+function getCurrentSongIndex() {
+	const songItems = songList.querySelectorAll('li');
+	const currentSong = document.querySelector('.playing');
+
+	return Array.from(songItems).indexOf(currentSong);
+}
+
 
 songList.addEventListener('dragend', (e) => {
 	e.target.classList.remove('dragging');
@@ -53,33 +98,41 @@ songList.addEventListener('drop', (e) => {
 });	
 
 function addSongToList(file) {
-    const songItem = document.createElement('li');
+	const songItem = document.createElement('li');
 	songItem.draggable = true;
-	songItem.id = file.name
+	songItem.file = file;
+	songItem.id = file.name;
 
 	const playButton = document.createElement('button');
-    const playIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    const playPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    playIcon.setAttribute("width", "20");
-    playIcon.setAttribute("height", "20");
-    playIcon.setAttribute("viewBox", "0 0 24 24");
-    playPath.setAttribute("d", "M8 5v14l11-7z");
-    playIcon.appendChild(playPath);
-    playButton.appendChild(playIcon);
-    playButton.classList.add('play-song-btn');
+	const playIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	const playPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	playIcon.setAttribute("width", "20");
+	playIcon.setAttribute("height", "20");
+	playIcon.setAttribute("viewBox", "0 0 24 24");
+	playPath.setAttribute("d", "M8 5v14l11-7z");
+	playIcon.appendChild(playPath);
+	playButton.appendChild(playIcon);
+	playButton.classList.add('play-song-btn');
 
 	playButton.addEventListener('click', () => {
-        playSong(file);
-    });
+		playSong(songItem);
+	});
 
-    songItem.appendChild(playButton);
-    songItem.appendChild(document.createTextNode(file.name));
-    songList.querySelector('ul').appendChild(songItem);
+	songItem.appendChild(playButton);
+	songItem.appendChild(document.createTextNode(file.name));
+	songList.querySelector('ul').appendChild(songItem);
 }
 
-function playSong(file) {
-    const fileURL = URL.createObjectURL(file);
-    audioPlayer.src = fileURL;
-    audioPlayer.load();
-    audioPlayer.play();
+function playSong(songItem) {
+	const currentPlayingSong = document.querySelector('.playing');
+
+	if (currentPlayingSong) {
+		currentPlayingSong.classList.remove('playing');
+	}
+
+	songItem.classList.add('playing');
+	const fileURL = URL.createObjectURL(songItem.file);
+	audioPlayer.src = fileURL;
+	audioPlayer.load();
+	audioPlayer.play();
 }
