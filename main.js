@@ -17,19 +17,19 @@ songList.addEventListener('dragover', (e) => {
 		return;
 	}
 
+	if (dragging.parentNode != target.parentNode) {
+		return;
+	}
+
 	if (isBefore(dragging, target)) {
 		target.parentNode.insertBefore(dragging, target);
 	} else {
 		target.parentNode.insertBefore(dragging, target.nextSibling);
 	}
 
-	function isBefore(a, b) {
-		if (a.parentNode != b.parentNode) {
-			return false;
-		}
-
-		for (let current = a.previousSibling; current && current.nodeType != Node.DOCUMENT_NODE; current = current.previousSibling) {
-			if (current == b) {
+	function isBefore(dragging, target) {
+		for (let current = dragging.previousSibling; current; current = current.previousSibling) {
+			if (current == target) {
 				return true;
 			}
 		}
