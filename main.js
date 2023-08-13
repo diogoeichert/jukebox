@@ -3,6 +3,7 @@
 const audioPlayer = document.querySelector('#audioPlayer');
 const progressBar = document.querySelector('#progressBar');
 const songList = document.querySelector('#songList');
+const playButton = document.getElementById('playButton');
 const previousButton = document.getElementById('previousButton');
 const nextButton = document.getElementById('nextButton');
 
@@ -11,6 +12,20 @@ audioPlayer.addEventListener('timeupdate', () => {
 	const duration = audioPlayer.duration;
 	const progressPercentage = (currentTime / duration) * 100;
 	progressBar.style.width = progressPercentage + '%';
+});
+
+playButton.addEventListener('click', () => {
+	const currentPlayingSong = document.querySelector('.playing');
+
+    if (currentPlayingSong) {
+        togglePlayPause(currentPlayingSong);
+    } else {
+        const firstSong = songList.querySelector('li');
+
+		if (firstSong) {
+            playSong(firstSong);
+        }
+    }
 });
 
 previousButton.addEventListener('click', () => {
@@ -135,4 +150,14 @@ function playSong(songItem) {
 	audioPlayer.src = fileURL;
 	audioPlayer.load();
 	audioPlayer.play();
+}
+
+function togglePlayPause(songItem) {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        // songItem.classList.add('playing');
+    } else {
+        audioPlayer.pause();
+        // songItem.classList.remove('playing');
+    }
 }
