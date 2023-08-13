@@ -1,10 +1,45 @@
 "use strict";
 
-const audioPlayer = document.getElementById('audioPlayer');
-const songList = document.getElementById('songList');
+const audioPlayer = document.querySelector('#audioPlayer');
+const songList = document.querySelector('#songList');
+
+songList.addEventListener('dragend', (e) => {
+	e.target.classList.remove('dragging');
+});
 
 songList.addEventListener('dragover', (e) => {
+	const dragging = document.querySelector('.dragging');
+	const target = e.target;
+
 	e.preventDefault();
+
+	if (!dragging) {
+		return;
+	}
+
+	if (isBefore(dragging, target)) {
+		target.parentNode.insertBefore(dragging, target);
+	} else {
+		target.parentNode.insertBefore(dragging, target.nextSibling);
+	}
+
+	function isBefore(a, b) {
+		if (a.parentNode != b.parentNode) {
+			return false;
+		}
+
+		for (let current = a.previousSibling; current && current.nodeType != Node.DOCUMENT_NODE; current = current.previousSibling) {
+			if (current == b) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+});
+
+songList.addEventListener('dragstart', (e) => {
+	e.target.classList.add('dragging');
 });
 
 songList.addEventListener('drop', (e) => {
@@ -19,6 +54,9 @@ songList.addEventListener('drop', (e) => {
 
 function addSongToList(file) {
     const songItem = document.createElement('li');
+	songItem.draggable = true;
+	songItem.id = file.name
+
 	const playButton = document.createElement('button');
     const playIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const playPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
