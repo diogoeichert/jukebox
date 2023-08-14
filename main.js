@@ -58,6 +58,13 @@ function playNextSong() {
 	if (currentSongIndex < songItems.length - 1) {
 		const nextSongItem = songItems[currentSongIndex + 1];
 		playSong(nextSongItem);
+	} else {
+		const currentPlayingSong = document.querySelector('.playing');
+		progressBar.value = 0;
+
+		if (currentPlayingSong) {
+			currentPlayingSong.classList.remove('playing');
+		}
 	}
 }
 
