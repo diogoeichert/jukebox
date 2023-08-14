@@ -12,10 +12,12 @@ audioPlayer.addEventListener('ended', () => {
 });
 
 audioPlayer.addEventListener('timeupdate', () => {
-	const currentTime = audioPlayer.currentTime;
-	const duration = audioPlayer.duration;
-	const progressPercentage = (currentTime / duration) * 100;
-	progressBar.style.width = progressPercentage + '%';
+    const currentTime = audioPlayer.currentTime;
+    const duration = audioPlayer.duration;
+
+    if (!isNaN(duration)) {
+        progressBar.value = (currentTime / duration) * 100;
+    }
 });
 
 playButton.addEventListener('click', () => {
@@ -163,5 +165,30 @@ function togglePlayPause(songItem) {
     } else {
         audioPlayer.pause();
         // songItem.classList.remove('playing');
+    }
+}
+
+progressBar.addEventListener('mousedown', (e) => {
+    updateProgressBar(e.clientX);
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (progressBar.isDragging) {
+        updateProgressBar(e.clientX);
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    progressBar.isDragging = false;
+});
+
+function updateProgressBar(clientX) {
+    const progressBarRect = progressBar.getBoundingClientRect();
+    const offsetX = clientX - progressBarRect.left;
+    const progressPercentage = (offsetX / progressBarRect.width) * 100;
+
+    if (progressPercentage >= 0 && progressPercentage <= 100) {
+        progressBar.value = progressPercentage;
+        audioPlayer.currentTime = (progressPercentage / 100) * audioPlayer.duration;
     }
 }

@@ -143,16 +143,8 @@ body, html {
 }
 
 .progress {
-	height: 100%;
-	/* width: 50%; */
+	cursor: col-resize;
 	background-color: #333;
-	border-radius: 5px;
-}
-
-.progress-bar {
-	height: 5px;
-	background-color: #ddd;
-	border-radius: 5px;
 	width: 100%;
 }
 
