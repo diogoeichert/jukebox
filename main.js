@@ -8,30 +8,30 @@ const previousButton = document.getElementById('previousButton');
 const nextButton = document.getElementById('nextButton');
 
 audioPlayer.addEventListener('ended', () => {
-    playNextSong();
+	playNextSong();
 });
 
 audioPlayer.addEventListener('timeupdate', () => {
-    const currentTime = audioPlayer.currentTime;
-    const duration = audioPlayer.duration;
+	const currentTime = audioPlayer.currentTime;
+	const duration = audioPlayer.duration;
 
-    if (!isNaN(duration)) {
-        progressBar.value = (currentTime / duration) * 100;
-    }
+	if (!isNaN(duration)) {
+		progressBar.value = (currentTime / duration) * 100;
+	}
 });
 
 playButton.addEventListener('click', () => {
 	const currentPlayingSong = document.querySelector('.playing');
 
-    if (currentPlayingSong) {
-        togglePlayPause(currentPlayingSong);
-    } else {
-        const firstSong = songList.querySelector('li');
+	if (currentPlayingSong) {
+		togglePlayPause(currentPlayingSong);
+	} else {
+		const firstSong = songList.querySelector('li');
 
 		if (firstSong) {
-            playSong(firstSong);
-        }
-    }
+			playSong(firstSong);
+		}
+	}
 });
 
 previousButton.addEventListener('click', () => {
@@ -166,36 +166,34 @@ function playSong(songItem) {
 }
 
 function togglePlayPause(songItem) {
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        // songItem.classList.add('playing');
-    } else {
-        audioPlayer.pause();
-        // songItem.classList.remove('playing');
-    }
+	if (audioPlayer.paused) {
+		audioPlayer.play();
+	} else {
+		audioPlayer.pause();
+	}
 }
 
 progressBar.addEventListener('mousedown', (e) => {
-    updateProgressBar(e.clientX);
+	updateProgressBar(e.clientX);
 });
 
 document.addEventListener('mousemove', (e) => {
-    if (progressBar.isDragging) {
-        updateProgressBar(e.clientX);
-    }
+	if (progressBar.isDragging) {
+		updateProgressBar(e.clientX);
+	}
 });
 
 document.addEventListener('mouseup', () => {
-    progressBar.isDragging = false;
+	progressBar.isDragging = false;
 });
 
 function updateProgressBar(clientX) {
-    const progressBarRect = progressBar.getBoundingClientRect();
-    const offsetX = clientX - progressBarRect.left;
-    const progressPercentage = (offsetX / progressBarRect.width) * 100;
+	const progressBarRect = progressBar.getBoundingClientRect();
+	const offsetX = clientX - progressBarRect.left;
+	const progressPercentage = (offsetX / progressBarRect.width) * 100;
 
-    if (progressPercentage >= 0 && progressPercentage <= 100) {
-        progressBar.value = progressPercentage;
-        audioPlayer.currentTime = (progressPercentage / 100) * audioPlayer.duration;
-    }
+	if (progressPercentage >= 0 && progressPercentage <= 100) {
+		progressBar.value = progressPercentage;
+		audioPlayer.currentTime = (progressPercentage / 100) * audioPlayer.duration;
+	}
 }
