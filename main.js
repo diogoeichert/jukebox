@@ -1,11 +1,15 @@
 "use strict";
 
-const audioPlayer = document.querySelector('#audioPlayer');
-const progressBar = document.querySelector('#progressBar');
-const songList = document.querySelector('#songList');
+const audioPlayer = document.getElementById('audioPlayer');
+const progressBar = document.getElementById('progressBar');
+const songList = document.getElementById('songList');
 const playButton = document.getElementById('playButton');
 const previousButton = document.getElementById('previousButton');
 const nextButton = document.getElementById('nextButton');
+
+audioPlayer.addEventListener('ended', () => {
+    playNextSong();
+});
 
 audioPlayer.addEventListener('timeupdate', () => {
 	const currentTime = audioPlayer.currentTime;
