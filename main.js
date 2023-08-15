@@ -5,6 +5,7 @@ const audioPlayer = document.getElementById('audioPlayer');
 const analyser = createAnalyser(audioContext, audioPlayer);
 const progressBar = document.getElementById('progressBar');
 const songList = document.getElementById('songList');
+const songTitleLabel = document.getElementById('songTitleLabel');
 const playButton = document.getElementById('playButton');
 const previousButton = document.getElementById('previousButton');
 const nextButton = document.getElementById('nextButton');
@@ -176,6 +177,7 @@ function playSong(songItem) {
 	audioPlayer.src = fileURL;
 	audioPlayer.load();
 	audioPlayer.play();
+	songTitleLabel.innerHTML = songItem.file.name;
 }
 
 function togglePlayPause(songItem) {
