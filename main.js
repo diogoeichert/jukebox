@@ -1,11 +1,15 @@
 "use strict";
 
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const audioPlayer = document.getElementById('audioPlayer');
+const analyser = createAnalyser(audioContext, audioPlayer);
 const progressBar = document.getElementById('progressBar');
 const songList = document.getElementById('songList');
 const playButton = document.getElementById('playButton');
 const previousButton = document.getElementById('previousButton');
 const nextButton = document.getElementById('nextButton');
+const visualizerCanvas = document.getElementById('visualizer');
+const visualizerContext = visualizerCanvas.getContext('2d');
 
 audioPlayer.addEventListener('ended', () => {
 	playNextSong();
@@ -151,6 +155,15 @@ function addSongToList(file) {
 	songList.querySelector('ul').appendChild(songItem);
 }
 
+function createAnalyser(audioContext, audioElement) {
+	const source = audioContext.createMediaElementSource(audioElement);
+	const analyser = audioContext.createAnalyser();
+	source.connect(analyser);
+	analyser.connect(audioContext.destination);
+	analyser.fftSize = 256;
+	return analyser;
+}
+
 function playSong(songItem) {
 	const currentPlayingSong = document.querySelector('.playing');
 
@@ -197,3 +210,23 @@ function updateProgressBar(clientX) {
 		audioPlayer.currentTime = (progressPercentage / 100) * audioPlayer.duration;
 	}
 }
+
+function visualize() {
+	const bufferLength = analyser.frequencyBinCount;
+	const dataArray = new Uint8Array(bufferLength);
+	visualizerContext.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+	analyser.getByteFrequencyData(dataArray);
+	const barWidth = (visualizerCanvas.width / bufferLength) * 2;
+	let x = 0;
+
+	for (let i = 0; i < bufferLength; ++i) {
+		const barHeight = (dataArray[i] / 255) * visualizerCanvas.height;
+		visualizerContext.fillStyle = `rgb(50, 50, ${i * 4})`;
+		visualizerContext.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
+		x += barWidth + 1;
+	}
+
+	requestAnimationFrame(visualize);
+}
+
+visualize();
