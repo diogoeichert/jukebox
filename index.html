@@ -26,13 +26,13 @@
 
 				<ul></ul>
 			</div>
-			
+
 			<div class="player">
-				<audio id="audioPlayer"></audio>
+				<audio id="audioElement"></audio>
 				<canvas class="visualizer" id="visualizer"></canvas>
 				
 				<div class="player-controls">
-					<button class="control-btn" id ='previousButton'>
+					<button class="control-btn" id ="previousButton">
 						<span class="btn-label">Previous</span>
 
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@
 						</svg>
 					</button>
 
-					<button class="control-btn play-btn" id ='playButton'>
+					<button class="control-btn play-btn" id ="playButton">
 						<span class="btn-label">Play</span>
 
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@
 						</svg>
 					</button>
 
-					<button class="control-btn" id ='nextButton'>
+					<button class="control-btn" id ="nextButton">
 						<span class="btn-label">Next</span>
 
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -57,15 +57,6 @@
 							<path d="M15 12l-7-7v14z" fill="#000000"/>
 						</svg>
 					</button>
-				</div>
-
-				<div class="song-info">
-					<img src="song-cover.jpg" alt="Song Cover">
-
-					<div class="info">
-						<p class="song-title" id="songTitleLabel">Unknown Track</p>
-						<p class="artist-name" id="artistNameLabel">Unknown Artist</p>
-					</div>
 				</div>
 
 				<progress class="progress" id="progressBar" value="0" max="100"></progress>

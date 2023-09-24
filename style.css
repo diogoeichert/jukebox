@@ -5,12 +5,6 @@ body, html {
 	overflow: hidden;
 }
 
-.artist-name {
-	font-size: 14px;
-	margin: 0;
-	color: #666;
-}
-
 .content {
 	flex: 1;
 	display: flex;
@@ -39,10 +33,6 @@ body, html {
 	padding: 20px;
 	text-align: center;
 	cursor: pointer;
-}
-
-.info {
-	text-align: left;
 }
 
 .music-player {
@@ -146,25 +136,6 @@ body, html {
 	cursor: col-resize;
 	background-color: #333;
 	width: 100%;
-}
-
-.song-info {
-	display: flex;
-	align-items: center;
-	margin-bottom: 20px;
-}
-
-.song-info img {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.song-title {
-	font-size: 16px;
-	font-weight: bold;
-	margin: 0;
 }
 
 .visualizer {
